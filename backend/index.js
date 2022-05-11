@@ -13,7 +13,9 @@ app.use(express.json());
 const loginRouter = require("./routes/login");
 const rolesRouter = require("./routes/roles");
 const usersRouter = require("./routes/users");
+const categoryRouter = require("./routes/category");
 // Routes Middleware
+app.use("/category", categoryRouter);
 app.use("/roles", rolesRouter);
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
