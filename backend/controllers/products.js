@@ -28,4 +28,32 @@ const createNewProduct = (req, res) => {
       });
     });
 };
-module.exports = { createNewProduct };
+const getAllProducts = (req, res) => {
+  productsModel
+    .find({})
+    .populate("category", "category -_id ")
+    .exec()
+    .then((result) => {
+      if (result.length) {
+        res.status(201).json({
+          success: true,
+          message: "all product ready to render",
+          product: result,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "no product yet",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { createNewProduct, getAllProducts };
