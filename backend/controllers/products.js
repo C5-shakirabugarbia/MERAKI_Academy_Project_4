@@ -55,5 +55,40 @@ const getAllProducts = (req, res) => {
       });
     });
 };
+const getProductByname = (req, res) => {
+  const productName = req.query.productName;
 
-module.exports = { createNewProduct, getAllProducts };
+  productsModel
+    .find({})
+    .populate("category", "category -_id ")
+    .exec()
+    .then((result) => {
+      if (result.length) {
+        result = result.filter((element) => {
+          return element.productName.includes(productName);
+        });
+        res.status(201).json({
+          success: true,
+          message: "search done",
+          product: result,
+        });
+      } else {
+        console.log(result);
+        res.status(404).json({
+          success: false,
+          message: "The product is not found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+// .find({$text: {$search: req.query.Productname}})
+
+module.exports = { createNewProduct, getAllProducts, getProductByname };
