@@ -47,28 +47,39 @@ const register = (req, res) => {
 };
 
 const addToCart = (req, res) => {
-  const productId = req.params.id;
+  const _id = req.params.id;
   const userId = req.token.userId;
   console.log("userId", userId);
-  console.log("productId", productId);
+  console.log("productId", _id);
 
   usersModle
     .updateOne(
       { _id: userId },
       {
         $push: {
-          cart: productId,
+          cart: _id,
         },
       }
     )
     .then((result) => {
       if (result) {
-        console.log(result);
-        res.status(200).json({
-          success: true,
-          message: "added to cart",
-          user: result,
-        });
+        // const newQuntity =
+        products
+          .findByIdAndUpdate({ _id }, { $inc: { quantity: -1 } })
+          .then((result) => {
+            console.log(result);
+            res.status(200).json({
+              success: true,
+              message: "added to cart",
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              success: false,
+              message: "Server Error",
+              err: err.message,
+            });
+          });
       } else {
         res.status(200).json({
           success: false,
@@ -86,28 +97,37 @@ const addToCart = (req, res) => {
     });
 };
 const deletFromCart = (req, res) => {
-  const productId = req.params.id;
+  const _id = req.params.id;
   const userId = req.token.userId;
-  console.log("userId", userId);
-  console.log("productId", productId);
 
   usersModle
     .updateOne(
       { _id: userId },
       {
         $pull: {
-          cart: productId,
+          cart: _id,
         },
       }
     )
     .then((result) => {
       if (result && result.modifiedCount === 1) {
-        console.log(result);
-        res.status(200).json({
-          success: true,
-          message: "deleteted",
-          user: result,
-        });
+        products
+          .findByIdAndUpdate({ _id }, { $inc: { quantity: +1 } })
+          .then((result) => {
+            res
+              .status(200)
+              .json({
+                success: true,
+                message: "deleteted",
+              })
+              .catch((err) => {
+                res.status(500).json({
+                  success: false,
+                  message: "Server Error",
+                  err: err.message,
+                });
+              });
+          });
       } else if (result.modifiedCount === 0) {
         res.status(200).json({
           success: false,

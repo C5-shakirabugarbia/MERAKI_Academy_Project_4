@@ -91,6 +91,8 @@ const getProductByname = (req, res) => {
     });
 };
 
+//  deleteproductByName
+
 // .find({$text: {$search: req.query.Productname}})
 
 module.exports = { createNewProduct, getAllProducts, getProductByname };
