@@ -48,15 +48,13 @@ const register = (req, res) => {
 
 const addToCart = (req, res) => {
   const productId = req.params.id;
-  const userId =  req.token.userId 
+  const userId = req.token.userId;
   console.log("userId", userId);
   console.log("productId", productId);
 
-
-  
   usersModle
     .updateOne(
-      { _id:userId},
+      { _id: userId },
       {
         $push: {
           cart: productId,
@@ -65,18 +63,60 @@ const addToCart = (req, res) => {
     )
     .then((result) => {
       if (result) {
-        // products.findByIdAndUpdate({_id: productId}, $add (aggregation))
-        // { $project: { item: 1, total: { $add: [ "$price", "$fee" ] } } }
         console.log(result);
         res.status(200).json({
           success: true,
           message: "added to cart",
-          user: result
+          user: result,
         });
       } else {
         res.status(200).json({
           success: false,
-          message: "you need to log in befor adding to cart",
+          message: "you need to login befor adding to cart",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+const deletFromCart = (req, res) => {
+  const productId = req.params.id;
+  const userId = req.token.userId;
+  console.log("userId", userId);
+  console.log("productId", productId);
+
+  usersModle
+    .updateOne(
+      { _id: userId },
+      {
+        $pull: {
+          cart: productId,
+        },
+      }
+    )
+    .then((result) => {
+      if (result && result.modifiedCount === 1) {
+        console.log(result);
+        res.status(200).json({
+          success: true,
+          message: "deleteted",
+          user: result,
+        });
+      } else if (result.modifiedCount === 0) {
+        res.status(200).json({
+          success: false,
+          message: "no such item",
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: "you need to login befor deleteing from cart",
         });
       }
     })
@@ -93,4 +133,5 @@ const addToCart = (req, res) => {
 module.exports = {
   register,
   addToCart,
+  deletFromCart,
 };
