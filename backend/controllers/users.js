@@ -1,3 +1,4 @@
+const products = require("../models/products");
 const usersModle = require("../models/users");
 
 const register = (req, res) => {
@@ -45,6 +46,51 @@ const register = (req, res) => {
     });
 };
 
+const addToCart = (req, res) => {
+  const productId = req.params.id;
+  const userId =  req.token.userId 
+  console.log("userId", userId);
+  console.log("productId", productId);
+
+
+  
+  usersModle
+    .updateOne(
+      { _id:userId},
+      {
+        $push: {
+          cart: productId,
+        },
+      }
+    )
+    .then((result) => {
+      if (result) {
+        // products.findByIdAndUpdate({_id: productId}, $add (aggregation))
+        // { $project: { item: 1, total: { $add: [ "$price", "$fee" ] } } }
+        console.log(result);
+        res.status(200).json({
+          success: true,
+          message: "added to cart",
+          user: result
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: "you need to log in befor adding to cart",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
 module.exports = {
   register,
+  addToCart,
 };

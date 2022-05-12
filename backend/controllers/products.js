@@ -29,6 +29,7 @@ const createNewProduct = (req, res) => {
     });
 };
 const getAllProducts = (req, res) => {
+  const userId = req.token.userId;
   productsModel
     .find({})
     .populate("category", "category -_id ")
@@ -37,6 +38,7 @@ const getAllProducts = (req, res) => {
       if (result.length) {
         res.status(201).json({
           success: true,
+          userId: userId,
           message: "all product ready to render",
           product: result,
         });
