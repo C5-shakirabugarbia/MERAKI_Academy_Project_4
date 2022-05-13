@@ -96,11 +96,18 @@ const deleteproductByName = (req, res) => {
   productsModel
     .findOneAndDelete({ productName: productName })
     .then((result) => {
-      res.status(201).json({
-        success: true,
-        message: "product deleted",
-        deletedProduct: result,
-      });
+      if (result) {
+        res.status(201).json({
+          success: true,
+          message: "product deleted",
+          deletedProduct: result,
+        });
+      } else {
+        res.status(201).json({
+          success: false,
+          message: "no such item",
+        });
+      }
     })
     .catch((err) => {
       res.status(500).json({
@@ -111,6 +118,35 @@ const deleteproductByName = (req, res) => {
     });
 };
 
+const updateProductByName = (req, res) => {
+  const productName = req.params.productName;
+  // const { description, price, img, category, quantity } = req.body;
+  productsModel
+    .findOneAndUpdate({ productName }, req.body, { new: true })
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `no such product`,
+        });
+      }
+      res
+        .status(202)
+        .json({
+          success: true,
+          message: `product updated`,
+          product: result,
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+          });
+        });
+    });
+};
+
 // .find({$text: {$search: req.query.Productname}})
 
 module.exports = {
@@ -118,4 +154,5 @@ module.exports = {
   getAllProducts,
   getProductByname,
   deleteproductByName,
+  updateProductByName,
 };
