@@ -146,7 +146,36 @@ const updateProductByName = (req, res) => {
         });
     });
 };
+const getProductByCategoryid = (req, res) => {
+  const category = req.query.category;
 
+  productsModel
+    .find({ category })
+    .populate("category", "category -_id ")
+    .exec()
+    .then((result) => {
+      if (result.length) {
+        res.status(201).json({
+          success: true,
+          message: "products been found",
+          product: result,
+        });
+      } else {
+        console.log(result);
+        res.status(404).json({
+          success: false,
+          message: "The product is not found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
 // .find({$text: {$search: req.query.Productname}})
 
 module.exports = {
@@ -155,4 +184,5 @@ module.exports = {
   getProductByname,
   deleteproductByName,
   updateProductByName,
+  getProductByCategoryid,
 };

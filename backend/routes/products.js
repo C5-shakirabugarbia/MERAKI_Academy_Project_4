@@ -6,8 +6,10 @@ const {
   getProductByname,
   deleteproductByName,
   updateProductByName,
+  getProductByCategoryid,
 } = require("../controllers/products");
 const productsRouter = express.Router();
+productsRouter.get("/category", authentication, getProductByCategoryid);
 productsRouter.put("/update/:productName", updateProductByName);
 productsRouter.delete("/delete/:productName", deleteproductByName);
 productsRouter.post("/create", createNewProduct);
