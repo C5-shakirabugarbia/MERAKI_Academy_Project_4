@@ -179,10 +179,42 @@ const viewCart = (req, res) => {
       });
     });
 };
+const viewProfile = (req, res) => {
+  const _id = req.token.userId;
+  console.log("user id", _id);
+  usersModle
+    .find({ _id })
+    .populate("cart")
+    .exec()
+    .then((result) => {
+      if (result) {
+        console.log(result.cart);
+        res.status(200).json({
+          success: true,
+          message: "here is the cart",
+          user: result,
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: "no such user",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
 
 module.exports = {
   register,
   addToCart,
   deletFromCart,
   viewCart,
+  viewProfile,
 };
