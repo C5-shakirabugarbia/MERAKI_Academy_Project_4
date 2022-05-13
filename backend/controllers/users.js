@@ -49,8 +49,6 @@ const register = (req, res) => {
 const addToCart = (req, res) => {
   const _id = req.params.id;
   const userId = req.token.userId;
-  console.log("userId", userId);
-  console.log("productId", _id);
 
   usersModle
     .updateOne(
@@ -82,7 +80,7 @@ const addToCart = (req, res) => {
             });
           });
       } else {
-         res.status(200).json({
+        res.status(200).json({
           success: false,
           message: "you need to login befor adding to cart",
         });
@@ -150,9 +148,41 @@ const deletFromCart = (req, res) => {
       });
     });
 };
+const viewCart = (req, res) => {
+  const _id = req.token.userId;
+  console.log("user id", _id);
+  usersModle
+    .find({ _id })
+    .populate("cart")
+    .exec()
+    .then((result) => {
+      if (result) {
+        console.log(result.cart);
+        res.status(200).json({
+          success: true,
+          message: "here is the cart",
+          cart: result[0].cart,
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: "no such user",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
 
 module.exports = {
   register,
   addToCart,
   deletFromCart,
+  viewCart,
 };
