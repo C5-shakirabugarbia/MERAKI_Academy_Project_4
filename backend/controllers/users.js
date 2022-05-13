@@ -74,6 +74,7 @@ const addToCart = (req, res) => {
             });
           })
           .catch((err) => {
+            console.log("firsterr", err);
             res.status(500).json({
               success: false,
               message: "Server Error",
@@ -81,7 +82,7 @@ const addToCart = (req, res) => {
             });
           });
       } else {
-        res.status(200).json({
+         res.status(200).json({
           success: false,
           message: "you need to login befor adding to cart",
         });

@@ -91,8 +91,31 @@ const getProductByname = (req, res) => {
     });
 };
 
-//  deleteproductByName
+const deleteproductByName = (req, res) => {
+  const productName = req.params.productName;
+  productsModel
+    .findOneAndDelete({ productName: productName })
+    .then((result) => {
+      res.status(201).json({
+        success: true,
+        message: "product deleted",
+        deletedProduct: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
 
 // .find({$text: {$search: req.query.Productname}})
 
-module.exports = { createNewProduct, getAllProducts, getProductByname };
+module.exports = {
+  createNewProduct,
+  getAllProducts,
+  getProductByname,
+  deleteproductByName,
+};
