@@ -1,14 +1,13 @@
-.register{
-    background-color: white;
+.login{
+  
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-  
 }
-.regsInputs{
+.loginInputs{
     margin-top: 7%;
-    display: flex;
+    display:  flex;
     flex-direction: column;
+  
 }

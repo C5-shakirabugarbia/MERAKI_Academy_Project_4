@@ -1,0 +1,27 @@
+img{
+    
+    width: 150px;
+   
+}
+.firstnav{
+    display: flex;
+}
+.links{
+    
+    display: flex;
+    align-items: center;
+    margin-left: 46%;
+}
+.links div{
+    margin-left: 11%;
+    background-color: rgb(0, 255, 34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97px;
+    height: 44px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}

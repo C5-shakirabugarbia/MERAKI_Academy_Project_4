@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { tokenContext } from "../../App";
+import "./login.css";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +45,7 @@ export const Login = () => {
       </div>
       <div className="loginButton">
         <button onClick={login}>login</button>
+        <img src="https://www.123rf.com/photo_59915031_carrots-logo.html"></img>
       </div>
     </div>
   );
