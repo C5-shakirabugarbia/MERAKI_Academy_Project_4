@@ -45,7 +45,6 @@ export const Login = () => {
       </div>
       <div className="loginButton">
         <button onClick={login}>login</button>
-        <img src="https://www.123rf.com/photo_59915031_carrots-logo.html"></img>
       </div>
     </div>
   );
