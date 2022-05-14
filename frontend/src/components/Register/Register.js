@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./register.css";
 const Register = () => {
   const [massage, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +31,7 @@ const Register = () => {
   return (
     <div className="register">
       <div className="regsInputs">
+        <label>first name</label>
         <input
           type="text"
           onChange={(e) => {
@@ -37,6 +39,7 @@ const Register = () => {
           }}
           placeholder="enter your first Name"
         ></input>
+        <label>last name</label>
         <input
           type="text"
           onChange={(e) => {
@@ -44,20 +47,7 @@ const Register = () => {
           }}
           placeholder="enter your last Name"
         ></input>
-        <input
-          type="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          placeholder="password"
-        ></input>
-        <input
-          type="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          placeholder="email"
-        ></input>
+        <label>phone number</label>
         <input
           type="number"
           onChange={(e) => {
@@ -65,6 +55,7 @@ const Register = () => {
           }}
           placeholder="phone number"
         ></input>
+        <label>address</label>
         <input
           type="text"
           onChange={(e) => {
@@ -72,13 +63,29 @@ const Register = () => {
           }}
           placeholder="address"
         ></input>
+        <label>email</label>
+        <input
+          type="email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          placeholder="email"
+        ></input>
+        <label>password</label>
+        <input
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          placeholder="password"
+        ></input>
       </div>
       <div className="regsButton">
         <button className="signUpButton" onClick={register}>
           register
         </button>
       </div>
-      {massage}
+      <div className="regMessage">{massage}</div>
     </div>
   );
 };
