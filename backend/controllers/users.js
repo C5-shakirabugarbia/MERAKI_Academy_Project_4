@@ -40,7 +40,7 @@ const register = (req, res) => {
       }
       res.status(500).json({
         success: false,
-        message: `Server Error`,
+        message: `make sure to fill every field`,
         err: err.message,
       });
     });
