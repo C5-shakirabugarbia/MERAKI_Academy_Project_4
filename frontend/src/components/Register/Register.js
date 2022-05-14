@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./register.css";
+import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
+  const navigate = useNavigate();
   const [massage, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -81,7 +83,15 @@ const Register = () => {
         ></input>
       </div>
       <div className="regsButton">
-        <button className="signUpButton" onClick={register}>
+        <button
+          className="signUpButton"
+          onClick={(e) => {
+            register();
+            if (massage === "Account Created Successfully") {
+              navigate("/login");
+            }
+          }}
+        >
           register
         </button>
       </div>

@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { tokenContext } from "../../App";
 import "./login.css";
-export const Login = () => {
+const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken, isLoggedIn, setIsloggedin } =
@@ -44,7 +47,14 @@ export const Login = () => {
         ></input>
       </div>
       <div className="loginButton">
-        <button onClick={login}>login</button>
+        <button
+          onClick={(e) => {
+            login();
+            navigate("/categories");
+          }}
+        >
+          login
+        </button>
       </div>
     </div>
   );
