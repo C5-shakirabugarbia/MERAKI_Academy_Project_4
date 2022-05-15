@@ -24,7 +24,9 @@ const Categories = () => {
   useEffect(() => {
     getAllCategories();
   }, []);
-  return <div>ag</div>;
+  return <div>ag
+      <></>
+  </div>;
 };
 
 export default Categories;

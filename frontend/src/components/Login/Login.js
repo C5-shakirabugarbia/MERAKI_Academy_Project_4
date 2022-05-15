@@ -50,7 +50,7 @@ const Login = () => {
         <button
           onClick={(e) => {
             login();
-            navigate("/categories");
+            navigate("/products");
           }}
         >
           login

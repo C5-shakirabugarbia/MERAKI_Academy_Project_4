@@ -29,9 +29,13 @@ const createNewProduct = (req, res) => {
     });
 };
 const getAllProducts = (req, res) => {
+  const page = req.query.p || 0;
+  const productsPerPage = 3;
   const userId = req.token.userId;
   productsModel
     .find({})
+    .skip(page * productsPerPage)
+    .limit(productsPerPage)
     .populate("category", "category -_id ")
     .exec()
     .then((result) => {
