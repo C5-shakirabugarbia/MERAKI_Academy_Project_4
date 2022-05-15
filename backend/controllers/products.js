@@ -39,7 +39,7 @@ const getAllProducts = (req, res) => {
     .populate("category", "category -_id ")
     .exec()
     .then((result) => {
-      if (result.length) {
+      if (result.length !== 0) {
         res.status(201).json({
           success: true,
           userId: userId,

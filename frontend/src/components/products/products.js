@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import React, { useState, useContext, useEffect } from "react";
 import { tokenContext } from "../../App";
 
@@ -6,7 +7,7 @@ const Products = () => {
   const [page, setPage] = useState(0);
   const { token, setToken, isLoggedIn, setIsloggedin } =
     useContext(tokenContext);
-  const [products, setProducts] = useState("");
+  const [products, setProducts] = useState([]);
   const next = () => {
     axios
       .get(`http://localhost:5000/products/?p=${page + 1}`, {
@@ -14,13 +15,16 @@ const Products = () => {
       })
       .then((result) => {
         console.log(result.data.product);
-        if (result.data.message === "all product ready to render") {
+        if (result.data.product.length !== 0) {
           setProducts(result.data.product);
           setPage(page + 1);
+          console.log(page);
+        } else {
+          setPage(page);
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   };
   const back = () => {
@@ -30,33 +34,29 @@ const Products = () => {
       })
       .then((result) => {
         console.log(result.data.product);
-        if (result.data.message === "all product ready to render") {
-          setProducts(result.data.product);
-          setPage(page - 1);
-        }
+        setProducts(result.data.product);
+        setPage(page - 1);
       })
       .catch((err) => {
+        console.log("ag");
         console.log(err);
       });
   };
   const getProduct = () => {
     axios
-      .get(`http://localhost:5000/products/?p=0`, {
+      .get(`http://localhost:5000/products/`, {
         headers: { authorization: `Bearer ` + token },
       })
       .then((result) => {
         console.log(result.data.product);
-        if (result.data.message === "all product ready to render") {
-          setProducts(result.data.product);
-        }
+        setProducts(result.data.product);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   };
   useEffect(() => {
     getProduct();
-    console.log(page);
   }, []);
 
   return (
