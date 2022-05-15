@@ -24,7 +24,7 @@ const Register = () => {
         address,
       })
       .then((result) => {
-        setMessage(result.data.message);
+        navigate("/login");
       })
       .catch((err) => {
         setMessage(err.response.data.message);
@@ -87,9 +87,6 @@ const Register = () => {
           className="signUpButton"
           onClick={(e) => {
             register();
-            if (massage === "Account Created Successfully") {
-              navigate("/login");
-            }
           }}
         >
           register
@@ -101,13 +98,3 @@ const Register = () => {
 };
 
 export default Register;
-
-// firstName: { type: String, required: true },
-// lastName: { type: String },
-// phoneNumber: { type: Number, required: true },
-// address: { type: String, required: true },
-// cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-
-// email: { type: String, unique: true, required: true },
-// password: { type: String, required: true },
-// role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },

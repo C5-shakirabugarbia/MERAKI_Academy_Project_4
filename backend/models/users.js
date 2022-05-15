@@ -20,3 +20,9 @@ userSchema.pre("save", async function () {
 });
 
 module.exports = mongoose.model("User", userSchema);
+// cart: [
+//   {
+//     productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+//     quantity: { type: Number },
+//   },
+// ],

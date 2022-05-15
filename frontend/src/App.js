@@ -5,6 +5,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import React, { useState, createContext, useEffect } from "react";
 import Categories from "./components/Categories/Categories";
+import SecNav from "./components/Navbar/seconedNavbar";
 export const tokenContext = createContext();
 
 function App() {
@@ -21,8 +22,7 @@ function App() {
           setIsloggedin,
         }}
       >
-        <FirstNavbar />
-
+        {isLoggedIn === false ? <FirstNavbar /> : <SecNav />}
         <Routes>
           <Route
             path="/register"
