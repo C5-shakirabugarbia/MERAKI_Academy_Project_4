@@ -18,11 +18,11 @@
     padding: 3% ;
     opacity: 0;
     transition: opacity 150ms ease-in-out ,transform 150ms  ease-in-out;
-    transform: translateY(-10px );
-pointer-events: none;
+  
+
 }
 .dropdown > .categories:focus +.dropdownMenu{
     opacity: 1;
-    transform: translate(0);
-    pointer-events: auto;
+    
+    
 }

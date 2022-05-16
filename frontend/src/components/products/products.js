@@ -19,7 +19,24 @@ const Products = () => {
     setSearchValue,
     categories,
     setCategories,
+    filterValue,
+    setFilterValue,
   } = useContext(tokenContext);
+  const filter = (string) => {
+    axios
+      .get(`http://localhost:5000/products/category?category=${string}`, {
+        headers: { authorization: `Bearer ` + token },
+      })
+      .then((result) => {
+        console.log("aa", result.data.product);
+        setProducts(result.data.product);
+        setFilterValue(string);
+        navigate("/categories");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const getAllCategories = () => {
     axios
       .get("http://localhost:5000/category/", {
@@ -138,7 +155,16 @@ const Products = () => {
         <button className="categories">Categories</button>
         <div className="dropdownMenu">
           {categories.map((element, index) => {
-            return <div key={index}>{element.category}</div>;
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  filter(element._id);
+                }}
+              >
+                {element.category}
+              </div>
+            );
           })}
         </div>
       </div>
