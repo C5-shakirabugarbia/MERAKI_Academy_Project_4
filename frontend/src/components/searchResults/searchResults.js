@@ -45,33 +45,42 @@ const Search = () => {
       });
   };
   return (
-    <div className="productPlace">
-      {products.map((element, index) => {
-        return (
-          <div className="product" key={index}>
-            <div className="productimg">
-              <img src={element.img}></img>
+    <div>
+      <div>
+        <button onClick={()=>{
+        navigate("/products")
+        }}>back to all product</button>
+      </div>
+      <div className="productPlace">
+        {products.map((element, index) => {
+          return (
+            <div className="product" key={index}>
+              <div className="productimg">
+                <img src={element.img}></img>
+              </div>
+              <div className="productname">
+                Product Name: {element.productName}
+              </div>
+              <div className="productdes">
+                Description: {element.description}
+              </div>
+              <div className="productprice">price:{element.price}$</div>
+              <div className="productquantity ">
+                items left:{element.quantity}
+              </div>
+              <div className="productaddcart">
+                <button
+                  onClick={() => {
+                    addTocart(element._id);
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
-            <div className="productname">
-              Product Name: {element.productName}
-            </div>
-            <div className="productdes">Description: {element.description}</div>
-            <div className="productprice">price:{element.price}$</div>
-            <div className="productquantity ">
-              items left:{element.quantity}
-            </div>
-            <div className="productaddcart">
-              <button
-                onClick={() => {
-                  addTocart(element._id);
-                }}
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

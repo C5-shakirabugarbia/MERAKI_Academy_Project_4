@@ -17,7 +17,24 @@ const Products = () => {
     setProducts,
     searchValue,
     setSearchValue,
+    categories,
+    setCategories,
   } = useContext(tokenContext);
+  const getAllCategories = () => {
+    axios
+      .get("http://localhost:5000/category/", {
+        headers: { authorization: `Bearer ` + token },
+      })
+      .then((result) => {
+        console.log(result.data.categories);
+        if (result.data.message === "all categories ready to render") {
+          setCategories(result.data.categories);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const search = (String) => {
     axios
@@ -73,7 +90,6 @@ const Products = () => {
         headers: { authorization: `Bearer ` + token },
       })
       .then((result) => {
-        console.log(result.data.product);
         setProducts(result.data.product);
         setPage(page - 1);
       })
@@ -88,7 +104,6 @@ const Products = () => {
         headers: { authorization: `Bearer ` + token },
       })
       .then((result) => {
-        console.log(result.data.product);
         setProducts(result.data.product);
       })
       .catch((err) => {
@@ -96,6 +111,7 @@ const Products = () => {
       });
   };
   useEffect(() => {
+    getAllCategories();
     getProduct();
   }, []);
 
@@ -117,6 +133,14 @@ const Products = () => {
             setSearchValue(e.target.value);
           }}
         />
+      </div>
+      <div className="dropdown">
+        <button className="categories">Categories</button>
+        <div className="dropdownMenu">
+          {categories.map((element, index) => {
+            return <div key={index}>{element.category}</div>;
+          })}
+        </div>
       </div>
       <div className="productPlace">
         {products.map((element, index) => {

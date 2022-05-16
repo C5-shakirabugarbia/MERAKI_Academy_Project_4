@@ -11,6 +11,7 @@ import Search from "./components/searchResults/searchResults";
 export const tokenContext = createContext();
 
 function App() {
+  const [categories, setCategories] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const checkToken = localStorage.getItem("token");
   const [token, setToken] = useState(checkToken || "");
@@ -28,6 +29,8 @@ function App() {
           setProducts,
           searchValue,
           setSearchValue,
+          categories,
+          setCategories,
         }}
       >
         {isLoggedIn === false ? <FirstNavbar /> : <SecNav />}
