@@ -8,6 +8,23 @@ const Products = () => {
   const { token, setToken, isLoggedIn, setIsloggedin } =
     useContext(tokenContext);
   const [products, setProducts] = useState([]);
+  const addTocart = (String) => {
+    axios
+      .put(
+        `http://localhost:5000/users/addToCart/${String}`,
+        {},
+        {
+          headers: { authorization: `Bearer ` + token },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+        getProduct();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const next = () => {
     axios
       .get(`http://localhost:5000/products/?p=${page + 1}`, {
@@ -75,7 +92,15 @@ const Products = () => {
             <div className="productquantity ">
               items left:{element.quantity}
             </div>
-            <div className="productaddcart">Add to cart</div>
+            <div className="productaddcart">
+              <button
+                onClick={() => {
+                  addTocart(element._id);
+                }}
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         );
       })}
