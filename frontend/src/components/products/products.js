@@ -61,19 +61,35 @@ const Products = () => {
 
   return (
     <div>
-      <button
-        onClick={(e) => {
-          next();
-        }}
-      >
-        next
-      </button>
+      {products.map((element, index) => {
+        return (
+          <div className="product" key={index}>
+            <div className="productimg">
+              <img src={element.img}></img>
+            </div>
+            <div className="productdes">{element.description}</div>
+            <div className="productprice">price:{element.price}$</div>
+            <div className="productquantity ">
+              items left:{element.quantity}
+            </div>
+            <div className="productaddcart">Add to cart</div>
+          </div>
+        );
+      })}
+
       <button
         onClick={(e) => {
           back();
         }}
       >
         back
+      </button>
+      <button
+        onClick={(e) => {
+          next();
+        }}
+      >
+        next
       </button>
     </div>
   );
