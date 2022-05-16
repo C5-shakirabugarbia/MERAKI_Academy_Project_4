@@ -6,10 +6,18 @@ import { tokenContext } from "../../App";
 
 const Products = () => {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
+
   const [page, setPage] = useState(0);
-  const { token, setToken, isLoggedIn, setIsloggedin, products, setProducts } =
-    useContext(tokenContext);
+  const {
+    token,
+    setToken,
+    isLoggedIn,
+    setIsloggedin,
+    products,
+    setProducts,
+    searchValue,
+    setSearchValue,
+  } = useContext(tokenContext);
 
   const search = (String) => {
     axios

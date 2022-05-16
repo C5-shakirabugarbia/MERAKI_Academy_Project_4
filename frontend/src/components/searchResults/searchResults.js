@@ -4,11 +4,19 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 const Search = () => {
   const navigate = useNavigate();
-  const { token, setToken, isLoggedIn, setIsloggedin, products, setProducts } =
-    useContext(tokenContext);
+  const {
+    token,
+    setToken,
+    isLoggedIn,
+    setIsloggedin,
+    products,
+    setProducts,
+    searchValue,
+    setSearchValue,
+  } = useContext(tokenContext);
   const getProduct = () => {
     axios
-      .get(`http://localhost:5000/products/`, {
+      .get(`http://localhost:5000/products/search?productName=${searchValue}`, {
         headers: { authorization: `Bearer ` + token },
       })
       .then((result) => {
@@ -16,9 +24,10 @@ const Search = () => {
         setProducts(result.data.product);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        console.log(err);
       });
   };
+
   const addTocart = (String) => {
     axios
       .put(
