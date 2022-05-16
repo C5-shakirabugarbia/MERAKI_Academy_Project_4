@@ -7,12 +7,14 @@ import React, { useState, createContext, useEffect } from "react";
 import Categories from "./components/Categories/Categories";
 import SecNav from "./components/Navbar/seconedNavbar";
 import Products from "./components/products/products";
+import Search from "./components/searchResults/searchResults";
 export const tokenContext = createContext();
 
 function App() {
   const checkToken = localStorage.getItem("token");
   const [token, setToken] = useState(checkToken || "");
   const [isLoggedIn, setIsloggedin] = useState(checkToken ? true : false);
+  const [products, setProducts] = useState([]);
   return (
     <div className="App">
       <tokenContext.Provider
@@ -21,6 +23,8 @@ function App() {
           setToken,
           isLoggedIn,
           setIsloggedin,
+          products,
+          setProducts,
         }}
       >
         {isLoggedIn === false ? <FirstNavbar /> : <SecNav />}
@@ -37,6 +41,10 @@ function App() {
           <Route
             path="/categories"
             element={isLoggedIn === true ? <Categories /> : <></>}
+          />
+          <Route
+            path="/search"
+            element={isLoggedIn === true ? <Search/> : <></>}
           />
           <Route
             path="/products"

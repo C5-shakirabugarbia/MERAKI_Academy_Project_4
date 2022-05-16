@@ -1,15 +1,16 @@
 import axios from "axios";
 import "./product.css";
 import React, { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { tokenContext } from "../../App";
 
 const Products = () => {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
-  const [searched, setSearched] = useState([]);
   const [page, setPage] = useState(0);
-  const { token, setToken, isLoggedIn, setIsloggedin } =
+  const { token, setToken, isLoggedIn, setIsloggedin, products, setProducts } =
     useContext(tokenContext);
-  const [products, setProducts] = useState([]);
+
   const search = (String) => {
     axios
       .get(`http://localhost:5000/products/search?productName=${String}`, {
@@ -17,7 +18,7 @@ const Products = () => {
       })
       .then((result) => {
         console.log(result.data.product);
-        setSearched(result.data.product);
+        setProducts(result.data.product);
       })
       .catch((err) => {
         console.log(err);
@@ -96,6 +97,7 @@ const Products = () => {
         <button
           onClick={(e) => {
             search(searchValue);
+            navigate("/search");
           }}
         >
           search
