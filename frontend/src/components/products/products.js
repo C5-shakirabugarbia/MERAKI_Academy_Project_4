@@ -4,10 +4,25 @@ import React, { useState, useContext, useEffect } from "react";
 import { tokenContext } from "../../App";
 
 const Products = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [searched, setSearched] = useState([]);
   const [page, setPage] = useState(0);
   const { token, setToken, isLoggedIn, setIsloggedin } =
     useContext(tokenContext);
   const [products, setProducts] = useState([]);
+  const search = (String) => {
+    axios
+      .get(`http://localhost:5000/products/search?productName=${String}`, {
+        headers: { authorization: `Bearer ` + token },
+      })
+      .then((result) => {
+        console.log(result.data.product);
+        setSearched(result.data.product);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const addTocart = (String) => {
     axios
       .put(
@@ -18,7 +33,6 @@ const Products = () => {
         }
       )
       .then((result) => {
-        console.log(result);
         getProduct();
       })
       .catch((err) => {
@@ -61,7 +75,7 @@ const Products = () => {
   };
   const getProduct = () => {
     axios
-      .get(`http://localhost:5000/products/`, {
+      .get(`http://localhost:5000/products/?p=${page}`, {
         headers: { authorization: `Bearer ` + token },
       })
       .then((result) => {
@@ -77,48 +91,68 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="productPlace">
-      {products.map((element, index) => {
-        return (
-          <div className="product" key={index}>
-            <div className="productimg">
-              <img src={element.img}></img>
+    <div>
+      <div>
+        <button
+          onClick={(e) => {
+            search(searchValue);
+          }}
+        >
+          search
+        </button>
+        <input
+          type="text"
+          placeholder="search"
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
+        />
+      </div>
+      <div className="productPlace">
+        {products.map((element, index) => {
+          return (
+            <div className="product" key={index}>
+              <div className="productimg">
+                <img src={element.img}></img>
+              </div>
+              <div className="productname">
+                Product Name: {element.productName}
+              </div>
+              <div className="productdes">
+                Description: {element.description}
+              </div>
+              <div className="productprice">price:{element.price}$</div>
+              <div className="productquantity ">
+                items left:{element.quantity}
+              </div>
+              <div className="productaddcart">
+                <button
+                  onClick={() => {
+                    addTocart(element._id);
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
-            <div className="productname">
-              Product Name: {element.productName}
-            </div>
-            <div className="productdes">Description: {element.description}</div>
-            <div className="productprice">price:{element.price}$</div>
-            <div className="productquantity ">
-              items left:{element.quantity}
-            </div>
-            <div className="productaddcart">
-              <button
-                onClick={() => {
-                  addTocart(element._id);
-                }}
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      <button
-        onClick={(e) => {
-          back();
-        }}
-      >
-        back
-      </button>
-      <button
-        onClick={(e) => {
-          next();
-        }}
-      >
-        next
-      </button>
+        <button
+          onClick={(e) => {
+            back();
+          }}
+        >
+          back
+        </button>
+        <button
+          onClick={(e) => {
+            next();
+          }}
+        >
+          next
+        </button>
+      </div>
     </div>
   );
 };

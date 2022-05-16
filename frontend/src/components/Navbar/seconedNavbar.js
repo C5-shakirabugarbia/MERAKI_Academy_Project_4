@@ -31,6 +31,7 @@ const SecNav = () => {
           <Link to="/login"> view cart</Link>
         </div>
       </div>
+      
     </div>
   );
 };
