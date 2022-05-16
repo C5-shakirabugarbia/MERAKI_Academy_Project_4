@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import "./product.css";
 import React, { useState, useContext, useEffect } from "react";
 import { tokenContext } from "../../App";
 
@@ -60,14 +60,17 @@ const Products = () => {
   }, []);
 
   return (
-    <div>
+    <div className="productPlace">
       {products.map((element, index) => {
         return (
           <div className="product" key={index}>
             <div className="productimg">
               <img src={element.img}></img>
             </div>
-            <div className="productdes">{element.description}</div>
+            <div className="productname">
+              Product Name: {element.productName}
+            </div>
+            <div className="productdes">Description: {element.description}</div>
             <div className="productprice">price:{element.price}$</div>
             <div className="productquantity ">
               items left:{element.quantity}
