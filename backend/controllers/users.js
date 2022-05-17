@@ -231,7 +231,7 @@ const updateProfile = (req, res) => {
         res.status(200).json({
           success: true,
           message: "here is the profile",
-          user: result,
+          user: [result],
         });
       } else {
         res.status(200).json({
