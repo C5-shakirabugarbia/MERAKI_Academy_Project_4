@@ -5,20 +5,39 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Userprofile = () => {
   const [updating, setupdate] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phonenumber, setPhoneNumber] = useState(0);
+
   const navigate = useNavigate();
-  const { token, setToken, isLoggedIn, setIsloggedin, userInfo, setUserInfo } =
-    useContext(tokenContext);
+  const {
+    token,
+    setToken,
+    isLoggedIn,
+    setIsloggedin,
+    products,
+    setProducts,
+    searchValue,
+    setSearchValue,
+    categories,
+    setCategories,
+    filterValue,
+    setFilterValue,
+    userInfo,
+    setUserInfo,
+    firstName,
+    setFirstName,
+    email,
+    setEmail,
+    address,
+    setAddress,
+    lastName,
+    setlastName,
+    phoneNumber,
+    setPhoneNumber,
+  } = useContext(tokenContext);
   const confirming = () => {
-    const body = { firstName, lastName, email, address, phonenumber };
     axios
       .put(
         "http://localhost:5000/users/update",
-        { body },
+        { firstName, lastName, email, address, phoneNumber },
         {
           headers: { authorization: `Bearer ` + token },
         }
@@ -30,6 +49,7 @@ const Userprofile = () => {
       .catch((err) => {
         console.log(err);
       });
+    setupdate(false);
   };
   const viewProfile = () => {
     axios
@@ -39,6 +59,11 @@ const Userprofile = () => {
       .then((result) => {
         console.log(result.data.user);
         setUserInfo(result.data.user);
+        setEmail(result.data.user.email);
+        setAddress(result.data.user.address);
+        setFirstName(result.data.user.firstName);
+        setPhoneNumber(result.data.user.phoneNumber);
+        setlastName(result.data.user.lastName);
       })
       .catch((err) => {
         console.log(err);
@@ -63,8 +88,13 @@ const Userprofile = () => {
               first name : {element.firstName}
               {updating === true ? (
                 <input
+                  defaultValue={element.firstName}
                   onChange={(e) => {
-                    setFirstName(e.target.value);
+                    if (e.target.value === "") {
+                      setFirstName(e.target.defaultValue);
+                    } else {
+                      setFirstName(e.target.value);
+                    }
                   }}
                   placeholder="update first name"
                 ></input>
@@ -76,8 +106,13 @@ const Userprofile = () => {
               last name : {element.lastName}
               {updating === true ? (
                 <input
+                  defaultValue={element.lastName}
                   onChange={(e) => {
-                    setlastName(e.target.value);
+                    if (e.target.value === "") {
+                      setlastName(e.target.defaultValue);
+                    } else {
+                      setlastName(e.target.value);
+                    }
                   }}
                   placeholder="update last Name"
                 ></input>
@@ -89,8 +124,13 @@ const Userprofile = () => {
               phone number : {element.phoneNumber}
               {updating === true ? (
                 <input
+                  defaultValue={element.phoneNumber}
                   onChange={(e) => {
-                    setPhoneNumber(e.target.value);
+                    if (e.target.value === "") {
+                      setPhoneNumber(e.target.defaultValue);
+                    } else {
+                      setPhoneNumber(e.target.value);
+                    }
                   }}
                   placeholder="update phone number"
                 ></input>
@@ -102,8 +142,13 @@ const Userprofile = () => {
               email : {element.email}
               {updating === true ? (
                 <input
+                  defaultValue={element.email}
                   onChange={(e) => {
-                    setEmail(e.target.value);
+                    if (e.target.value === "") {
+                      setEmail(e.target.defaultValue);
+                    } else {
+                      setEmail(e.target.value);
+                    }
                   }}
                   placeholder="update email"
                 ></input>
@@ -115,8 +160,13 @@ const Userprofile = () => {
               address: {element.address}
               {updating === true ? (
                 <input
+                  defaultValue={element.address}
                   onChange={(e) => {
-                    setAddress(e.target.value);
+                    if (e.target.value === "") {
+                      setAddress(e.target.defaultValue);
+                    } else {
+                      setAddress(e.target.value);
+                    }
                   }}
                   placeholder="update address"
                 ></input>

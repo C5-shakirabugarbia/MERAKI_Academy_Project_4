@@ -20,6 +20,11 @@ function App() {
   const [token, setToken] = useState(checkToken || "");
   const [isLoggedIn, setIsloggedin] = useState(checkToken ? true : false);
   const [products, setProducts] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(0);
   return (
     <div className="App">
       <tokenContext.Provider
@@ -38,6 +43,16 @@ function App() {
           setFilterValue,
           userInfo,
           setUserInfo,
+          firstName,
+          setFirstName,
+          email,
+          setEmail,
+          address,
+          setAddress,
+          lastName,
+          setlastName,
+          phoneNumber,
+          setPhoneNumber,
         }}
       >
         {isLoggedIn === false ? <FirstNavbar /> : <SecNav />}

@@ -13,13 +13,42 @@ const SecNav = () => {
       .then((result) => {
         console.log(result.data.user);
         setUserInfo(result.data.user);
+        setEmail(result.data.user.email);
+        setAddress(result.data.user.address);
+        setFirstName(result.data.user.firstName);
+        setPhoneNumber(result.data.user.phoneNumber);
+        setlastName(result.data.user.lastName)
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const { token, setToken, isLoggedIn, setIsloggedin, userInfo, setUserInfo } =
-    useContext(tokenContext);
+  const {
+    token,
+    setToken,
+    isLoggedIn,
+    setIsloggedin,
+    products,
+    setProducts,
+    searchValue,
+    setSearchValue,
+    categories,
+    setCategories,
+    filterValue,
+    setFilterValue,
+    userInfo,
+    setUserInfo,
+    firstName,
+    setFirstName,
+    email,
+    setEmail,
+    address,
+    setAddress,
+    lastName,
+    setlastName,
+    phoneNumber,
+    setPhoneNumber,
+  } = useContext(tokenContext);
   return (
     <div className="firstnav">
       <div className="logo">
