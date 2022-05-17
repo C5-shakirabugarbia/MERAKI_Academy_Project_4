@@ -5,6 +5,19 @@ import logo from "../../set/carrot-logo.jpg";
 import { tokenContext } from "../../App";
 import axios from "axios";
 const SecNav = () => {
+  const userCart = () => {
+    axios
+      .get("http://localhost:5000/users/viewcart", {
+        headers: { authorization: `Bearer ` + token },
+      })
+      .then((result) => {
+        console.log(result.data.cart);
+        setProducts(result.data.cart);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const viewProfile = () => {
     axios
       .get("http://localhost:5000/users/viewProfile", {
@@ -17,7 +30,7 @@ const SecNav = () => {
         setAddress(result.data.user.address);
         setFirstName(result.data.user.firstName);
         setPhoneNumber(result.data.user.phoneNumber);
-        setlastName(result.data.user.lastName)
+        setlastName(result.data.user.lastName);
       })
       .catch((err) => {
         console.log(err);
@@ -49,6 +62,7 @@ const SecNav = () => {
     phoneNumber,
     setPhoneNumber,
   } = useContext(tokenContext);
+
   return (
     <div className="firstnav">
       <div className="logo">
@@ -78,7 +92,15 @@ const SecNav = () => {
           </Link>
         </div>
         <div>
-          <Link to="/login"> view cart</Link>
+          <Link
+            onClick={() => {
+              userCart();
+            }}
+            to="/userCart"
+          >
+            {" "}
+            view cart
+          </Link>
         </div>
       </div>
     </div>

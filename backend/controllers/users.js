@@ -111,21 +111,21 @@ const deletFromCart = (req, res) => {
     .then((result) => {
       if (result && result.modifiedCount === 1) {
         products
-          .findByIdAndUpdate({ _id }, { $inc: { quantity: +1 } })
+          .findByIdAndUpdate({ _id }, { $inc: { quantity: +1 } }, { new: true })
           .then((result) => {
-            res
-              .status(200)
-              .json({
-                success: true,
-                message: "deleteted",
-              })
-              .catch((err) => {
-                res.status(500).json({
-                  success: false,
-                  message: "Server Error",
-                  err: err.message,
-                });
-              });
+            console.log("result", result);
+            res.status(200).json({
+              success: true,
+              message: "deleteted",
+              products: result,
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              success: false,
+              message: "Server Error",
+              err: err.message,
+            });
           });
       } else if (result.modifiedCount === 0) {
         res.status(200).json({

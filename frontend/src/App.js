@@ -9,6 +9,7 @@ import SecNav from "./components/Navbar/seconedNavbar";
 import Products from "./components/products/products";
 import Search from "./components/searchResults/searchResults";
 import Userprofile from "./components/userProfile/userProfile";
+import Cart from "./components/cart/Cart";
 export const tokenContext = createContext();
 
 function App() {
@@ -81,6 +82,10 @@ function App() {
           <Route
             path="/myProfile"
             element={isLoggedIn === true ? <Userprofile /> : <></>}
+          />
+          <Route
+            path="/userCart"
+            element={isLoggedIn === true ? <Cart /> : <></>}
           />
         </Routes>
       </tokenContext.Provider>
