@@ -210,6 +210,45 @@ const viewProfile = (req, res) => {
       });
     });
 };
+const updateProfile = (req, res) => {
+  const userId = req.token.userId;
+  const { firstName, lastName, phoneNumber, address, email } = req.body;
+  usersModle
+    .findOneAndUpdate(
+      { _id: userId },
+      {
+        firstName,
+        lastName,
+        phoneNumber,
+        address,
+        email,
+      },
+      { new: true }
+    )
+    .then((result) => {
+      if (result) {
+        console.log(result);
+        res.status(200).json({
+          success: true,
+          message: "here is the profile",
+          user: result,
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: "no profile found",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
 
 module.exports = {
   register,
@@ -217,4 +256,5 @@ module.exports = {
   deletFromCart,
   viewCart,
   viewProfile,
+  updateProfile,
 };
