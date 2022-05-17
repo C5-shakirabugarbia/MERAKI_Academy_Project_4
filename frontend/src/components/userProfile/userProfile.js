@@ -14,10 +14,11 @@ const Userprofile = () => {
   const { token, setToken, isLoggedIn, setIsloggedin, userInfo, setUserInfo } =
     useContext(tokenContext);
   const confirming = () => {
+    const body = { firstName, lastName, email, address, phonenumber };
     axios
       .put(
         "http://localhost:5000/users/update",
-        { firstName, lastName, email, address, phonenumber },
+        { body },
         {
           headers: { authorization: `Bearer ` + token },
         }
