@@ -8,9 +8,11 @@ import Categories from "./components/Categories/Categories";
 import SecNav from "./components/Navbar/seconedNavbar";
 import Products from "./components/products/products";
 import Search from "./components/searchResults/searchResults";
+import Userprofile from "./components/userProfile/userProfile";
 export const tokenContext = createContext();
 
 function App() {
+  const [userInfo, setUserInfo] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [categories, setCategories] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -34,6 +36,8 @@ function App() {
           setCategories,
           filterValue,
           setFilterValue,
+          userInfo,
+          setUserInfo,
         }}
       >
         {isLoggedIn === false ? <FirstNavbar /> : <SecNav />}
@@ -58,6 +62,10 @@ function App() {
           <Route
             path="/products"
             element={isLoggedIn === true ? <Products /> : <></>}
+          />
+          <Route
+            path="/myProfile"
+            element={isLoggedIn === true ? <Userprofile /> : <></>}
           />
         </Routes>
       </tokenContext.Provider>

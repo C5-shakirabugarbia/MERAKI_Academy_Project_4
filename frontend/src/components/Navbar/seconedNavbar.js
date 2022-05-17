@@ -3,8 +3,22 @@ import { Link } from "react-router-dom";
 
 import logo from "../../set/carrot-logo.jpg";
 import { tokenContext } from "../../App";
+import axios from "axios";
 const SecNav = () => {
-  const { token, setToken, isLoggedIn, setIsloggedin } =
+  const viewProfile = () => {
+    axios
+      .get("http://localhost:5000/users/viewProfile", {
+        headers: { authorization: `Bearer ` + token },
+      })
+      .then((result) => {
+        console.log(result.data.user);
+        setUserInfo(result.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const { token, setToken, isLoggedIn, setIsloggedin, userInfo, setUserInfo } =
     useContext(tokenContext);
   return (
     <div className="firstnav">
@@ -14,7 +28,14 @@ const SecNav = () => {
       </div>
       <div className="slinks">
         <div>
-          <Link to="/register">view profile</Link>
+          <Link
+            onClick={() => {
+              viewProfile();
+            }}
+            to="/myProfile"
+          >
+            view profile
+          </Link>
         </div>
         <div>
           <Link
@@ -31,7 +52,6 @@ const SecNav = () => {
           <Link to="/login"> view cart</Link>
         </div>
       </div>
-      
     </div>
   );
 };
