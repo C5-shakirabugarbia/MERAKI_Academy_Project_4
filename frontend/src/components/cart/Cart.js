@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { tokenContext } from "../../App";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import "./cart.css";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Cart = () => {
       })
       .then((result) => {
         console.log(result);
+        setTotalItems(totalItems - 1);
         userCart();
       })
       .catch((err) => {
@@ -56,13 +58,27 @@ const Cart = () => {
     setlastName,
     phoneNumber,
     setPhoneNumber,
+    totalePrice,
+    totalItems,
+    setTotalItems,
+    setTotalPrice,
   } = useContext(tokenContext);
+  let x = 0;
+  let y = 0;
+  products.forEach((element) => {
+    x = x + element.price;
+    y = y + 1;
+  });
+  setTotalPrice(x);
+  setTotalItems(y);
   useEffect(() => {
     userCart();
   }, []);
+
   return (
     <div>
       <button
+        className="backcart"
         onClick={() => {
           navigate("/products");
         }}
@@ -73,6 +89,7 @@ const Cart = () => {
         {products.map((element, index) => {
           return (
             <div className="product" key={index}>
+              {/* {setTotalPrice(totalePrice + element.price)} */}
               <div className="productimg">
                 <img src={element.img}></img>
               </div>
@@ -94,6 +111,9 @@ const Cart = () => {
             </div>
           );
         })}
+      </div>
+      <div className="info">
+        total price : {totalePrice} total items :{totalItems}
       </div>
     </div>
   );

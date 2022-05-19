@@ -1,0 +1,58 @@
+.userProfile{
+   
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+    align-items: center;
+    border: solid;
+    margin-top: 8%;
+}
+.userProfile div{
+        
+    margin-top: 4%;
+    display: flex;
+    width: 33%;
+    justify-content: center;
+       
+}
+.userProfile input{
+    margin-left: 9%;
+}
+.UserbackB{
+    position: absolute;
+    top: 31%;
+    left: 44%;
+    height: 8%;
+    text-align: center;
+    font-size: 82%;
+}
+.confirming{
+    position: absolute;
+    top: 91%;
+    left: 50%;
+    height: 8%;
+    text-align: center;
+    font-size: 82%;
+
+}
+
+.cancle{
+    position: absolute;
+    top: 91%;
+    left: 45%;
+    height: 8%;
+    text-align: center;
+    font-size: 82%;
+}
+
+.update{
+    position: absolute;
+    top: 91%;
+    left: 40%;
+    height: 8%;
+    text-align: center;
+    font-size: 82%;
+}

@@ -13,10 +13,11 @@ import Userprofile from "./components/userProfile/userProfile";
 import Cart from "./components/cart/Cart";
 import axios from "axios";
 export const tokenContext = createContext();
-
+//  {totalePrice} total items :{totalItems}
 function App() {
   const navigate = useNavigate();
-
+  const [totalePrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [userInfo, setUserInfo] = useState([]);
@@ -37,6 +38,10 @@ function App() {
     <div className="App">
       <tokenContext.Provider
         value={{
+          totalePrice,
+          totalItems,
+          setTotalItems,
+          setTotalPrice,
           token,
           setToken,
           isLoggedIn,

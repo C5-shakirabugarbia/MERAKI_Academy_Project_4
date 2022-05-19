@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { tokenContext } from "../../App";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import "./userprofile.css";
 
 const Userprofile = () => {
   const [updating, setupdate] = useState(false);
@@ -74,13 +75,17 @@ const Userprofile = () => {
   }, []);
   return (
     <div>
-      <button
-        onClick={() => {
-          navigate("/products");
-        }}
-      >
-        back to view all products
-      </button>
+      <div className="Userback">
+        <button
+          className="UserbackB"
+          onClick={() => {
+            navigate("/products");
+          }}
+        >
+          back to view all products
+        </button>
+      </div>
+
       {userInfo.map((element, index) => {
         return (
           <div key={index} className="userProfile">
@@ -177,7 +182,7 @@ const Userprofile = () => {
           </div>
         );
       })}
-      <button
+      <button className="update"
         onClick={(e) => {
           setupdate(true);
         }}
@@ -185,6 +190,7 @@ const Userprofile = () => {
         update
       </button>
       <button
+        className="cancle"
         onClick={(e) => {
           setupdate(false);
         }}
@@ -192,6 +198,7 @@ const Userprofile = () => {
         cancle
       </button>
       <button
+        className="confirming"
         onClick={(e) => {
           confirming();
         }}

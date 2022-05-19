@@ -21,6 +21,10 @@ const Products = () => {
     setCategories,
     filterValue,
     setFilterValue,
+    totalePrice,
+    totalItems,
+    setTotalItems,
+    setTotalPrice,
   } = useContext(tokenContext);
   const filter = (string) => {
     axios
@@ -135,6 +139,24 @@ const Products = () => {
   return (
     <div>
       <div className="search">
+        <div className="dropdown">
+          <button className="categories">Categories</button>
+          <div className="dropdownMenu">
+            {categories.map((element, index) => {
+              return (
+                <div
+                  className="catName"
+                  key={index}
+                  onClick={() => {
+                    filter(element._id);
+                  }}
+                >
+                  {element.category}
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <button
           onClick={(e) => {
             search(searchValue);
@@ -151,23 +173,7 @@ const Products = () => {
           }}
         />
       </div>
-      <div className="dropdown">
-        <button className="categories">Categories</button>
-        <div className="dropdownMenu">
-          {categories.map((element, index) => {
-            return (
-              <div
-                key={index}
-                onClick={() => {
-                  filter(element._id);
-                }}
-              >
-                {element.category}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+
       <div className="productPlace">
         {products.map((element, index) => {
           return (
@@ -197,22 +203,23 @@ const Products = () => {
             </div>
           );
         })}
-
-        <button
-          onClick={(e) => {
-            back();
-          }}
-        >
-          back
-        </button>
-        <button
-          onClick={(e) => {
-            next();
-          }}
-        >
-          next
-        </button>
       </div>
+      <button
+        className="back"
+        onClick={(e) => {
+          back();
+        }}
+      >
+        back
+      </button>
+      <button
+        className="next"
+        onClick={(e) => {
+          next();
+        }}
+      >
+        next
+      </button>
     </div>
   );
 };

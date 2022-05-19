@@ -1,14 +1,20 @@
-.register{
-    background-color: white;
+
+.regsInputs{
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.register {
+   
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-  
-}
-.regsInputs{
+    width: 50%;
+    border: solid #48a526;
     margin-top: 7%;
-    display: flex;
-    flex-direction: column;
+    margin-left: 25%;
+    background-color: aliceblue;
 }

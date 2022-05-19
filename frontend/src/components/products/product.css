@@ -14,11 +14,11 @@
     position: absolute;
     left: 0;
     top: calc(100%);
-    background-color: rgb(247, 249, 250);
+    background-color: rgb(247, 250, 248);
     padding: 3% ;
     opacity: 0;
     transition: opacity 150ms ease-in-out ,transform 150ms  ease-in-out;
-  
+  border: solid black;
 
 }
 .dropdown > .categories:focus +.dropdownMenu{
@@ -47,4 +47,27 @@
 }
 .productimg{
     display: contents;
+}
+.search{
+    display: flex;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+.catName{
+    cursor: pointer;
+}
+.catName:hover{
+    color: bisque;
+    background-color: black;
+    cursor: pointer;
+}
+.next{
+    position: absolute;
+    top: 34%;
+    left: 51%;
+}
+.back{
+    position: absolute;
+    top: 34%;
+    left: 47%;
 }
