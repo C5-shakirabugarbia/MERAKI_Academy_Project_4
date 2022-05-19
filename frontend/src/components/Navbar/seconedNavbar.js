@@ -66,7 +66,7 @@ const SecNav = () => {
   return (
     <div className="firstnav">
       <div className="logo">
-        <img src={logo}></img>
+        <img className="thelogo" src={logo}></img>
         welcome to carrot store
       </div>
       <div className="slinks">

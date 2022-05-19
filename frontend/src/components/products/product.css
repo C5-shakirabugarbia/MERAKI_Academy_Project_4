@@ -26,3 +26,25 @@
     
     
 }
+.thelogo{
+    
+    width: 150px;
+   
+}
+
+.productimg img{
+    width: 71%;
+    height: 180px;
+    
+}
+.product{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    border: solid;
+}
+.productimg{
+    display: contents;
+}

@@ -134,7 +134,7 @@ const Products = () => {
 
   return (
     <div>
-      <div>
+      <div className="search">
         <button
           onClick={(e) => {
             search(searchValue);

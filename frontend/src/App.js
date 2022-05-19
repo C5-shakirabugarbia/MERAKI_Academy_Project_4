@@ -17,7 +17,6 @@ export const tokenContext = createContext();
 function App() {
   const navigate = useNavigate();
 
-  
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [userInfo, setUserInfo] = useState([]);
@@ -34,38 +33,6 @@ function App() {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(0);
 
-  // const responseGoogle = (googleData) => {
-  //   console.log(password);
-  //   console.log(googleData.tokenObj.id_token);
-  //   localStorage.setItem("token", googleData.tokenObj.id_token);
-  //   // setEmail(googleData.profileObj.email);
-  //   // console.log("email response google", googleData.profileObj.email);
-  //   // setAddress("none");
-  //   // setFirstName(googleData.profileObj.givenName);
-  //   // setPassword("none");
-  //   // setPhoneNumber(0);
-  //   // setlastName(googleData.profileObj.familyName);
-  //   register(googleData);
-  //   // setToken(googleData.id_token);
-  //   navigate("/login");
-  // };
-  // const register = (googleData) => {
-  //   console.log("token", token);
-  //   axios
-  //     .post("http://localhost:5000/users/", {
-  //       email: googleData.profileObj.email,
-  //       password: "123456",
-  //       firstName: googleData.profileObj.givenName,
-  //       lastName: googleData.profileObj.familyName,
-  //       role,
-  //       phoneNumber: 85558,
-  //       address: "address",
-  //     })
-  //     .then((result) => {})
-  //     .catch((err) => {
-  //       setMessage(err.response.data.message);
-  //     });
-  // };
   return (
     <div className="App">
       <tokenContext.Provider
