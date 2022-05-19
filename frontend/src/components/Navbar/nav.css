@@ -6,6 +6,9 @@ img{
 .firstnav{
     display: flex;
     align-items: center;
+    border-bottom: solid 10px orange;
+
+    margin-left: 2%;
 }
 .links{
     
@@ -24,7 +27,8 @@ img{
     width: 15%;
     height: 43px;
     border-radius: 29%;
-    box-shadow: 3px 3px 2px black
+    box-shadow: 3px 3px 2px black;
+    transition: all 500ms;
 }
 .links div:hover{
     margin-left: 11%;
@@ -64,4 +68,10 @@ a{
     text-decoration: none;
     font-size: 120%;
     color: black;
+    transition: all 500ms;
+}
+a:hover{
+    text-decoration: none;
+    font-size: 120%;
+    color: #f69c0a;
 }

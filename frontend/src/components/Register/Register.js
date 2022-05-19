@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
+import GoogleLogin from "react-google-login";
+import { tokenContext } from "../../App";
 const Register = () => {
   const navigate = useNavigate();
   const [massage, setMessage] = useState("");
@@ -12,6 +14,20 @@ const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const role = "627a43ac49a1e22dc69e84cb";
+  const {
+    token,
+    setToken,
+    isLoggedIn,
+    setIsloggedin,
+    products,
+    setProducts,
+    searchValue,
+    setSearchValue,
+    categories,
+    setCategories,
+    filterValue,
+    setFilterValue,
+  } = useContext(tokenContext);
   const register = () => {
     axios
       .post("http://localhost:5000/users/", {
@@ -26,6 +42,38 @@ const Register = () => {
       .then((result) => {
         navigate("/login");
       })
+      .catch((err) => {
+        setMessage(err.response.data.message);
+      });
+  };
+  const responseGoogle = (googleData) => {
+    console.log(password);
+    console.log(googleData.tokenObj.id_token);
+    localStorage.setItem("token", googleData.tokenObj.id_token);
+    // setEmail(googleData.profileObj.email);
+    // console.log("email response google", googleData.profileObj.email);
+    // setAddress("none");
+    // setFirstName(googleData.profileObj.givenName);
+    // setPassword("none");
+    // setPhoneNumber(0);
+    // setlastName(googleData.profileObj.familyName);
+    registerr(googleData);
+    // setToken(googleData.id_token);
+    navigate("/login");
+  };
+  const registerr = (googleData) => {
+    console.log("token", token);
+    axios
+      .post("http://localhost:5000/users/", {
+        email: googleData.profileObj.email,
+        password: "123456",
+        firstName: googleData.profileObj.givenName,
+        lastName: googleData.profileObj.familyName,
+        role,
+        phoneNumber: 85558,
+        address: "address",
+      })
+      .then((result) => {})
       .catch((err) => {
         setMessage(err.response.data.message);
       });
@@ -93,6 +141,27 @@ const Register = () => {
         </button>
       </div>
       <div className="regMessage">{massage}</div>
+      {isLoggedIn === false ? (
+        <GoogleLogin
+          clientId="171142303177-dlklu0me533t11g37ll28pjmd603vh8c.apps.googleusercontent.com"
+          buttonText="register with google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+      ) : (
+        <></>
+      )}
+      {isLoggedIn === false ? (
+        <input
+          placeholder="set youer password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        ></input>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
