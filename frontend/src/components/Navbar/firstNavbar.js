@@ -7,9 +7,10 @@ const FirstNavbar = () => {
     <div className="firstnav">
       <div className="logo">
         <img src={logo}></img>
-        welcome to carrot store
       </div>
       <div className="links">
+        <p> welcome to carrot store</p>
+
         <div>
           <Link to="/register">register</Link>
         </div>

@@ -5,21 +5,37 @@ img{
 }
 .firstnav{
     display: flex;
+    align-items: center;
 }
 .links{
     
     display: flex;
     align-items: center;
-    margin-left: 46%;
+    margin-left: 0;
+    width: 70%;
+    height: 44px;
 }
 .links div{
     margin-left: 11%;
-    background-color: rgb(0, 255, 34);
+    background-color: #0fff0bf0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 97px;
-    height: 44px;
+    width: 15%;
+    height: 43px;
+    border-radius: 29%;
+    box-shadow: 3px 3px 2px black
+}
+.links div:hover{
+    margin-left: 11%;
+    background-color:  rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    height: 43px;
+    border-radius: 29%;
+    box-shadow: 3px 3px 2px  #0fff0bf0
 }
 .logo{
     display: flex;
@@ -40,4 +56,12 @@ img{
     align-items: center;
     margin-left: 20%;
     width: 50%;
+}
+p{
+    font-size: 28px;
+}
+a{
+    text-decoration: none;
+    font-size: 120%;
+    color: black;
 }
