@@ -44,10 +44,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running.
 
-Say what the step will be
+- Cloning the repo
 
 ```
-Give the example
+git clone https://github.com/C5-shakirabugarbia/MERAKI_Academy_Project_4#getting_started
 ```
 
 And repeat
