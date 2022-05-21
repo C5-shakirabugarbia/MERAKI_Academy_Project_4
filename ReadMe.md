@@ -71,11 +71,12 @@ in order to run the App use git bash in side the frontend folder and type
 npm start
 ```
 
- <img width=200px height=200px src="./frontend/src/set/registerationPage.jpg" alt="Project logo">
-
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+- register (you need first to sign Up)
+  fill the form down below then press register
+
+ <img width=500px height=400px src="./frontend/src/set/registerationPage.jpg" alt="Project logo">
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
