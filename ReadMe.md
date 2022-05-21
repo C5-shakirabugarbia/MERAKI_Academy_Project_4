@@ -21,7 +21,9 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+An online grocer is either a brick-and-mortar supermarket or grocery store that allows online ordering, or a standalone e-commerce service that includes grocery items
+
+According to the last pandemic of covid-19, the need for online stores have been increased even for a simple grocery shopping, our website provides you the service of ordering your needs while relaxing at home with fast deliver
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
