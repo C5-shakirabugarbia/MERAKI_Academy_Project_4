@@ -33,6 +33,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 - VS code <a href="https://code.visualstudio.com/download">download from here</a>
 
+- Git Bash <a href="https://git-scm.com/">download from here</a>
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
