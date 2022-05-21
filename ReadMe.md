@@ -7,7 +7,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> The Best Place To Get your Grocery From.
     <br> 
 </p>
 
@@ -67,4 +67,3 @@ Add notes about how to use the system.
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
 This project is guided by ©️ **[MERAKI Academy](https://www.meraki-academy.org)**
-
