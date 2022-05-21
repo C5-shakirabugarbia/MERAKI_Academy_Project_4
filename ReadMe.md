@@ -76,7 +76,7 @@ npm start
 - register (you need first to sign Up)
   fill the form down below then press register
 
- <img width=700px height=500px src="./frontend/src/set/registerationPage.jpg" alt="Project logo">
+ <img width=800px height=600px src="./frontend/src/set/registerationPage.jpg" alt="Project logo">
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
