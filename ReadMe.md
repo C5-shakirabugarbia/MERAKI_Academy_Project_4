@@ -39,12 +39,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Node.js <a href="https://nodejs.org/en/download/">download from here</a>
 
-
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
 
 - Cloning the repo
+  in order to clone the repo open the command line and type
 
 ```
 git clone https://github.com/C5-shakirabugarbia/MERAKI_Academy_Project_4#getting_started
