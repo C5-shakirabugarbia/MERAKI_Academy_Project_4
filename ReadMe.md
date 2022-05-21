@@ -71,7 +71,7 @@ in order to run the App use git bash in side the frontend folder and type
 npm start
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+ <img width=200px height=200px src="./frontend/src/set/carrot-logo.jpg" alt="Project logo">
 
 ## 🎈 Usage <a name="usage"></a>
 
