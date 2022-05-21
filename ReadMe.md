@@ -31,11 +31,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+- VS code <a href="https://code.visualstudio.com/download">download from here</a>
 
 ### Installing
 
