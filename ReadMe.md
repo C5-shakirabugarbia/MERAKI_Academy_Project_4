@@ -57,6 +57,20 @@ git clone https://github.com/C5-shakirabugarbia/MERAKI_Academy_Project_4#getting
 npm i
 ```
 
+-Running the server
+in order to run the server use git bash in side the backend folder and type
+
+```
+npm run dev
+```
+
+-Running the App
+in order to run the App use git bash in side the frontend folder and type
+
+```
+npm start
+```
+
 End with an example of getting some data out of the system or using it for a little demo.
 
 ## 🎈 Usage <a name="usage"></a>
