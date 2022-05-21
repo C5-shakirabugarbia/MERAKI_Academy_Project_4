@@ -44,6 +44,7 @@
     justify-items: center;
     align-items: center;
     border: solid;
+    height: 104%;
 }
 .productimg{
     display: contents;

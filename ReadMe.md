@@ -78,11 +78,15 @@ npm start
 
  <img width=800px height=600px src="./frontend/src/set/registerationPage.jpg" alt="Project logo">
 
-
 - login (you need to login to view the website)
   fill the form down below then press register (click at the picture to be more clearly)
 
  <img width=800px height=600px src="./frontend/src/set/login.jpg" alt="Project logo">
+
+- explore the web site (view profile , view cart , add to cart , search product, filter)
+  fill the form down below then press register (click at the picture to be more clearly)
+
+ <img width=800px height=600px src="./frontend/src/set/browsing.jpg" alt="Project logo">
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
