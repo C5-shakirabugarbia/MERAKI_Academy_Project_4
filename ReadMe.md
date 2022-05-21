@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="https://img.freepik.com/free-vector/carrot-logo_10250-2253.jpg" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Carrot Store</h3>
