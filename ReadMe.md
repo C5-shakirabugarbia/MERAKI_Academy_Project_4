@@ -74,7 +74,7 @@ npm start
 ## 🎈 Usage <a name="usage"></a>
 
 - register (you need first to sign Up)
-  fill the form down below then press register
+  fill the form down below then press register (click at the picture to be more clearly)
 
  <img width=800px height=600px src="./frontend/src/set/registerationPage.jpg" alt="Project logo">
 
