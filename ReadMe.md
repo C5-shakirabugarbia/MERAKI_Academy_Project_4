@@ -44,16 +44,17 @@ These instructions will get you a copy of the project up and running on your loc
 A step by step series of examples that tell you how to get a development env running.
 
 - Cloning the repo
-  in order to clone the repo open the command line and type
+- in order to clone the repo open the command line and type
 
 ```
 git clone https://github.com/C5-shakirabugarbia/MERAKI_Academy_Project_4#getting_started
 ```
 
-And repeat
+- install the packeges
+- in order to install the packeges open the command line and type
 
 ```
-until finished
+npm i
 ```
 
 End with an example of getting some data out of the system or using it for a little demo.
